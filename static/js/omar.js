@@ -22,8 +22,10 @@ function createPlot(select_state, select_year) {
   var layout = {
     margin: { l: 0, r: 0, b: 0, t: 0 },
     sunburstcolorway: [
-      "#636efa", "#EF553B", "#00cc96", "#ab63fa", "#19d3f3",
-      "#e763fa", "#FECB52", "#FFA15A", "#FF6692", "#B6E880"
+      "#76A5AF", "#6FA8DC", "#C27BA0", "#3C78D8", "#674EA7", 
+      "#A64D79", "#1D4587", "#20124D", "#4C1130", "#93C47D"
+      // "#636efa", "#EF553B", "#00cc96", "#ab63fa", "#19d3f3",
+      // "#e763fa", "#FECB52", "#FFA15A", "#FF6692", "#B6E880"
     ],
     extendsunburstcolorway: true
   };
