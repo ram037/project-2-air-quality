@@ -225,6 +225,7 @@ def all_aqi(aqi_data = aqi_data):
 
     return jsonify(aqi_data)
 
+
 @app.route("/aqi_data/year/<year>")
 def year_aqi(year, aqi_data = aqi_data):
     """Return a list of sample names."""
@@ -256,6 +257,7 @@ def year_aqi(year, aqi_data = aqi_data):
 
     # results = db.session.query(*sel).all()
     results = db.session.query(*sel).filter(aqi_data.year == year).order_by(asc(aqi_data.good_percentage)).all()
+
 
     aqi_data = []
     for result in results:
