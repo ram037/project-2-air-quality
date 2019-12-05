@@ -42,6 +42,9 @@
 						<br>
 						<h5>Created by The B.E.O.MB Squad</h5>
 						<h5>Columbia Engineering Data Analytics</h5>
+						<br>
+						<div class="text-center">
+							<button type="button" class="btn btn-lg btn-info">Scrolldown to Explore Dataset</button></div>
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -64,8 +67,8 @@
 			<div class="row">
 				<div class="col-md-2"></div>
 				<div class="col-md-8">
-					<br><br><br><br>
-					<div class="second-row-title">
+					<br><br><br><br><br>
+					<div class="row-title">
 						<h3>What is the Air Quality Index?</h3>
 					</div>
 					<div class="row-content">
@@ -80,7 +83,7 @@
 							country.</p>
 						(Source: AirNow.gov)
 						<br><br>
-						<div class="second-row-title">
+						<div class="row-title">
 							<h4>Air Quality Index Range</h4>
 						</div>
 					</div>
@@ -193,7 +196,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="text-center">
-						<div class="third-row-title">
+						<div class="row-title">
 							<h4>Select a Year below to Explore Air Quality Across U.S. Counties</h4>
 							<br>
 						</div><select id="selDataset" onchange="optionChanged(this.value)"></select>
@@ -202,35 +205,33 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<div class="text-center">
-						<br>
-						<p><b>Hover over a colored U.S. County to view location information as well as number of good
-								air
-								quality days</b></p>
-					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-2"></div>
 				<div class="col-md-8">
 					<br><br><br><br>
-					<div class="second-row-title">
-						<h3>What is the Air Quality Index?</h3>
+					<div class="row-title">
+						<h3>Air Quality U.S. County Map</h3>
 					</div>
-					<div class="row-content">
-						<p> The AQI is an index for reporting daily air quality. It tells you how clean or polluted your
-							air is, and what associated health effects might be a concern for you. The AQI focuses on
-							health effects you may experience within a few hours or days after breathing polluted air.
-							EPA calculates the AQI for five major air pollutants regulated by the Clean Air Act:
-							ground-level ozone, particle pollution (also known as particulate matter), carbon monoxide,
-							sulfur dioxide, and nitrogen dioxide. For each of these pollutants, EPA has established
-							national air quality standards to protect public health .Ground-level ozone and airborne
-							particles are the two pollutants that pose the greatest threat to human health in this
-							country.</p>
-						(Source: AirNow.gov)
+					<div class="second-row-content">
+						<p> Our analysis has showed that the air quality across the U.S. has decreased over time in the
+							last 5 years. Our measure is based on the percentage of "Good" days measured compared to the
+							total amount of measured AQI days, resulting in a percentage figure that evaluates how the
+							air quality is.
+							<br>
+							In some areas, such as Hawaii, air quality has gotten better overtime. In a lot of areas
+							within the Southwest Coast of the U.S., such as Los Angeles and San Diego, air quality has
+							stayed
+							consistently poor with a majority of "Unhealthy" and "Unhealthy Sensitive" days.
+						</p>
 						<br><br>
-						<div class="second-row-title">
-							<h4>Air Quality Index Range</h4>
+						<div class="row-title">
+							<h4>Air Quality Index Map</h4>
+							<div class="second-row-content">
+								Hover over a colored U.S. County to view location information as well as number of good
+								air quality days
+							</div>
 						</div>
 					</div>
 				</div>
@@ -239,137 +240,244 @@
 				<div class="col-md-2"></div>
 				<div class="col-md-7">
 					<br>
-					<div id="mapid" style="width: 1200px; height: 1000px;"></div>
+					<div id="mapid" style="width: 1250px; height: 1000px;"></div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-1"></div>
-				<div class="col-md-7">
-					<br>
-					<div id="bar"></div>
-				</div>
-				<div class="col-md-3">
-					<br>
-					<div class="table-content">
-						<h4><b>Top Counties with Best Air Quality in Year Selected</b></h4>
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>County</th>
-									<th>State</th>
-								</tr>
-							</thead>
-							<tbody></tbody>
-						</table>
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="second-row-content">
+						<br><br>
+						<div class="row-title">
+							<h4>Best and Worst Counties Ranked</h4>
+							<div class="second-row-content">
+								For the year specified, below are the 25 counties which have the worst air quality as
+								well
+								as the top 10 counties which have the best air quality.
+								<br>
+								Our analysis shows that select areas of Texas, New York, and New Mexico may be ideal for
+								those who are looking for better air quality.
+								<br>
+								Areas of the West Coast of the U.S. are among the higher frequencies of counties with
+								worse
+								air quality.
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="row">
-				<h1>Ozone Measures by County</h1>
-				<p>The graphic below shows the Ozone measurements across the counties within the state</p>
+				<div class="col-md-2"></div>
+				<div class="col-md-6">
+					<br>
+					<div id="bar"></div>
+				</div>
+				<div class="col-md-2">
+					<br>
+					<div class="table-content">
+						<div class="text-center">
+							<h5><b>Counties with Best Air Quality in Year Selected</b></h5>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>County</th>
+										<th>State</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-1"></div>
-				<div class="col-md-11">
-					<div id="sunburst"></div>
+				<div class="col-md-2"></div>
+				<div class="col-md-6">
+					<br><br>
+					<div class="row-title">
+						<h3>How about Ozone?</h3>
+					</div>
+					<div class="second-row-content">
+						<p> Ozone, a gas composed of three atoms of oxygen (O3), occurs both in the Earth's upper
+							atmosphere and at ground level. Ozone can be good or bad, depending on where it is found.
+							“Good” ozone (also called 'stratospheric ozone') occurs naturally in the upper atmosphere,
+							where it forms a protective layer that shields us from the sun's harmful ultraviolet rays.
+							This beneficial ozone has been partially destroyed by man-made chemicals. “Bad” ozone is
+							found at ground level and is a harmful air pollutant, because of its health effects on
+							people and the environment, and it is the main ingredient in smog.
+							<br>
+							Evidence from observational studies strongly indicates that higher daily ozone
+							concentrations are associated with increased asthma attacks, increased hospital admissions,
+							increased daily mortality, and other markers of morbidity.</p>
+						(Source: EPA.gov)
+						<br><br>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<br><br>
+					<div class=text-center><img src="{{ url_for('static', filename='css/asthma.svg') }}" width="300px"
+							height="300px"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-2">
+						<div class=text-center><img src="{{ url_for('static', filename='css/spray.svg') }}" width="175px"
+							height="175px"></div>
+				</div>
+				<div class="col-md-6">
+						<div class="row-title">
+							<h4>Different State, Different Rates</h4>
+						</div>
+						<div class="second-row-content">
+							<p>The natural concentration of ozone is about 0.01 parts per million (or 10 parts per
+								billion). According to the Environmental Protection Agency, exposure to ozone levels
+								greater than 0.07 parts per million (or 70 parts per billion) for 8 hours is unhealthy.
+								The highest levels of ozone from years 2013-2018 were found mainly in the southwest
+								region of the US, with peak ozone levels measured at 0.062 parts per million (or 62
+								parts per billion) in Clear Creek County, Colorado. The lowest levels of ozone were
+								found in Juncos, Puerto Rico at 0.006 parts per million (or 6 parts per billion).</p>
+							<br>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="text-center">
+							<div class="row-title">
+								<br>
+								<h4>Select a State and Year below to Explore Ozone Measures by County</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-4">
+						<br>
+						Select a State and Year to view county based Ozone values
+						<br>
+						Pick Your State:
+						<select id="select_state">
+							<option value="Alabama">Alabama</option>
+							<option value="Alaska">Alaska</option>
+							<option value="Arizona">Arizona</option>
+							<option value="Arkansas">Arkansas</option>
+							<option value="California">California</option>
+							<option value="Colorado">Colorado</option>
+							<option value="Connecticut">Connecticut</option>
+							<option value="Delaware">Delaware</option>
+							<option value="Florida">Florida</option>
+							<option value="Georgia">Georgia</option>
+							<option value="Hawaii">Hawaii</option>
+							<option value="Idaho">Idaho</option>
+							<option value="Illinois">Illinois</option>
+							<option value="Indiana">Indiana</option>
+							<option value="Iowa">Iowa</option>
+							<option value="Kansas">Kansas</option>
+							<option value="Kentucky">Kentucky</option>
+							<option value="Louisiana">Louisiana</option>
+							<option value="Maine">Maine</option>
+							<option value="Maryland">Maryland</option>
+							<option value="Massachusetts">Massachusetts</option>
+							<option value="Michigan">Michigan</option>
+							<option value="Minnesota">Minnesota</option>
+							<option value="Mississippi">Mississippi</option>
+							<option value="Missouri">Missouri</option>
+							<option value="Montana">Montana</option>
+							<option value="Nebraska">Nebraska</option>
+							<option value="Nevada">Nevada</option>
+							<option value="New Hampshire">New Hampshire</option>
+							<option value="New Jersey">New Jersey</option>
+							<option value="New Mexico">New Mexico</option>
+							<option value="New York">New York</option>
+							<option value="North Carolina">North Carolina</option>
+							<option value="North Dakota">North Dakota</option>
+							<option value="Ohio">Ohio</option>
+							<option value="Oklahoma">Oklahoma</option>
+							<option value="Oregon">Oregon</option>
+							<option value="Pennsylvania">Pennsylvania</option>
+							<option value="Rhode Island">Rhode Island</option>
+							<option value="South Carolina">South Carolina</option>
+							<option value="South Dakota">South Dakota</option>
+							<option value="Tennessee">Tennessee</option>
+							<option value="Texas">Texas</option>
+							<option value="Utah">Utah</option>
+							<option value="Vermont">Vermont</option>
+							<option value="Virginia">Virginia</option>
+							<option value="Washington">Washington</option>
+							<option value="West Virginia">West Virginia</option>
+							<option value="Wisconsin">Wisconsin</option>
+							<option value="Wyoming">Wyoming</option>
+						</select>
+						<br>
+						Pick Your Year:
+						<select id="select_year">
+							<option value="2014">2013</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+						</select>
+
+						<button onclick="getOption()">
+							See another chart
+						</button>
+						<div id="sunburst"></div>
+					</div>
+					<div class="col-md-4">
+						<br>
+						Select your county from the dropdown menu below to find out how ozone clean your county is!
+						<select id="selLine" onchange="lineOptionChanged(this.value)">
+							<!-- <option>---</option> -->
+						</select>
+						<br><br>
+						<div id="linegraph"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<br>
+						<div class="text-center">
+							<div class="row-title">
+								<br>
+								<h5>The B.E.O.MB Squad December 2019</h5><br><br><br>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="row">
+		</div>
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-11">
+
+
+				<div class="row">
+					<div class="col-md-1"></div>
+					<div class="col-md-11">
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<p>
-			Select a state from the dropdown list:
-			<select id="select_state">
-				<option value="Alabama">Alabama</option>
-				<option value="Alaska">Alaska</option>
-				<option value="Arizona">Arizona</option>
-				<option value="Arkansas">Arkansas</option>
-				<option value="California">California</option>
-				<option value="Colorado">Colorado</option>
-				<option value="Connecticut">Connecticut</option>
-				<option value="Delaware">Delaware</option>
-				<option value="Florida">Florida</option>
-				<option value="Georgia">Georgia</option>
-				<option value="Hawaii">Hawaii</option>
-				<option value="Idaho">Idaho</option>
-				<option value="Illinois">Illinois</option>
-				<option value="Indiana">Indiana</option>
-				<option value="Iowa">Iowa</option>
-				<option value="Kansas">Kansas</option>
-				<option value="Kentucky">Kentucky</option>
-				<option value="Louisiana">Louisiana</option>
-				<option value="Maine">Maine</option>
-				<option value="Maryland">Maryland</option>
-				<option value="Massachusetts">Massachusetts</option>
-				<option value="Michigan">Michigan</option>
-				<option value="Minnesota">Minnesota</option>
-				<option value="Mississippi">Mississippi</option>
-				<option value="Missouri">Missouri</option>
-				<option value="Montana">Montana</option>
-				<option value="Nebraska">Nebraska</option>
-				<option value="Nevada">Nevada</option>
-				<option value="New Hampshire">New Hampshire</option>
-				<option value="New Jersey">New Jersey</option>
-				<option value="New Mexico">New Mexico</option>
-				<option value="New York">New York</option>
-				<option value="North Carolina">North Carolina</option>
-				<option value="North Dakota">North Dakota</option>
-				<option value="Ohio">Ohio</option>
-				<option value="Oklahoma">Oklahoma</option>
-				<option value="Oregon">Oregon</option>
-				<option value="Pennsylvania">Pennsylvania</option>
-				<option value="Rhode Island">Rhode Island</option>
-				<option value="South Carolina">South Carolina</option>
-				<option value="South Dakota">South Dakota</option>
-				<option value="Tennessee">Tennessee</option>
-				<option value="Texas">Texas</option>
-				<option value="Utah">Utah</option>
-				<option value="Vermont">Vermont</option>
-				<option value="Virginia">Virginia</option>
-				<option value="Washington">Washington</option>
-				<option value="West Virginia">West Virginia</option>
-				<option value="Wisconsin">Wisconsin</option>
-				<option value="Wyoming">Wyoming</option>
-			</select>
-		</p>
+		<script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+		<script src="{{ url_for('static', filename='js/app.js') }}"></script>
 
-		<p>
-			Select a year from the dropdown list:
-			<select id="select_year">
-				<option value="2014">2013</option>
-				<option value="2014">2014</option>
-				<option value="2015">2015</option>
-				<option value="2016">2016</option>
-				<option value="2017">2017</option>
-				<option value="2018">2018</option>
-			</select>
-		</p>
-
-		<p>
-			You have selected the following state and year:
-			<span class="output"></span>
-		</p>
-
-		<button onclick="getOption()">
-			Refresh graphic
-		</button>
-		<div class="row">
-			<div class="col-md-1"></div>
-			<div class="col-md-11">
-				<select id="selLine" onchange="lineOptionChanged(this.value)">
-					<!-- <option>---</option> -->
-				</select>
-				<div id="scatter"></div>
-			</div>
-		</div>
-	</div>
-	</div>
-
-	<script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-	<script src="{{ url_for('static', filename='js/app.js') }}"></script>
-
-	<div id="myDiv"></div>
+		<div id="myDiv"></div>
 </body>
 
 </html>

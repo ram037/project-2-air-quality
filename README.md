@@ -6,10 +6,10 @@
 * Omar Eltorai
 
 # Due Date 
-Tuesday, December 3, 2019
+Thursday, December 5, 2019
 
 # Topic
-Air quality in the US
+Air Quality Index and Ozone in the US
 
 # Objective 
 Explore the historical air quality in the US by year and location (state, county, etc.).
