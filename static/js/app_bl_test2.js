@@ -1,5 +1,5 @@
 function buildBarChart(state_county) {
-    const url = `/ozone_data/all`
+    const url = ``
     d3.json(url).then(function (data) {
         console.log(data);
 
@@ -39,6 +39,11 @@ function init() {
     var selector = d3.select("#selDataset");
     // Use the list of sample names to populate the select options
     d3.json(url).then(function (data) {
+        
+        function pickstatecounty(data) {
+            return(data.state_county)
+        }
+
     arrOfCounties = [data.state_county]
     console.log(arrOfCounties);
 //     arrOfYears = [2018, 2017, 2016, 2015, 2014, 2013]
