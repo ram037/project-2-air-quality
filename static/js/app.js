@@ -7,7 +7,6 @@ function buildBarChart(selectTheYear) {
         const BAR = document.getElementById("bar");
 
         const stateCountyForYear = data.map(a => a.state_county);
-        console.log(stateCountyForYear);
 
         // ***************************************************************
         // tracing good, moderate, unhealthy sensitive, unhealthy, v unhealthy, and hazard bars.
@@ -167,7 +166,6 @@ function buildBarChart(selectTheYear) {
             });
 
             colorExpression.push("rgba(0,0,0,0)");
-            console.log(colorExpression);
 
             map.addLayer({
                 id: "counties",
@@ -188,7 +186,6 @@ function buildBarChart(selectTheYear) {
             var popup = new mapboxgl.Popup({ closeOnClick: false })
 
             map.on("mouseover", "counties", function (e) {
-                console.log(e);
                 var coordinates = e.lngLat;
                 var GEOID = e.features[0].properties.GEOID;
                 var countyName = e.features[0].properties.BASENAME;
@@ -200,7 +197,6 @@ function buildBarChart(selectTheYear) {
                 var resultArray = data.filter(obj => {
                     return obj.fips === GEOID
                 });
-                console.log(resultArray);
                 var resultStAbbr = resultArray.map(a => a.state_abbr);
                 var resultGoodDays = resultArray.map(a => a.good_days);
                 var resultDaysMeas = resultArray.map(a => a.days_with_aqi);
@@ -239,11 +235,49 @@ function init() {
             .text(year)
             .property("value", year);
 
-    })
+    });
+
+
+    // dropDown
+    //     .append("option")
+    //     .text("state_county")
+
+
+    const ozoneUrl = `/ozone_data/all`
+    d3.json(ozoneUrl).then(function (data) {
+
+        var dropDown = d3.select("#selLine");
+        // Get the counties and filter the list to only contain unique values
+        arrOfCounties = [];
+        for (i = 0; i < data.length; i += 6) {
+            arrOfCounties.push(data[i].state_county);
+        }
+        console.log(arrOfCounties);
+
+
+        arrOfCounties.forEach((state_county) => {
+            var options = dropDown
+                .append("option")
+                .text(state_county)
+                .property("value", state_county);
+
+        })
+
+        const firstCounty = arrOfCounties[0];
+        buildLineGraph(firstCounty);
+    });
+
 
     // Use the first sample from the list to build the initial plots
     const firstYear = arrOfYears[0];
     buildBarChart(firstYear);
+
+    const sunburstState = "Alabama"
+    const sunburstYear = 2013
+    createPlot(sunburstState, sunburstYear);
+
+    // Use the first sample from the list to build the initial plots
+
 };
 
 function optionChanged(newYear) {
@@ -251,8 +285,6 @@ function optionChanged(newYear) {
     buildBarChart(newYear);
     // buildMetadata(newSample);
 };
-
-init();
 
 function createPlot(select_state, select_year) {
     Plotly.d3.json(`/ozone_state/${select_state}/${select_year}`, function (err, rows) {
@@ -263,7 +295,6 @@ function createPlot(select_state, select_year) {
         }
 
         const first_twenty = rows.slice(0, 20);
-        console.log(first_twenty);
 
         var data = [
             {
@@ -285,7 +316,7 @@ function createPlot(select_state, select_year) {
         };
         Plotly.newPlot('myDiv', data, layout, { showSendToCloud: true });
     })
-}
+};
 
 function getOption() {
     select_state =
@@ -293,4 +324,47 @@ function getOption() {
     select_year =
         document.querySelector('#select_year').value;
     createPlot(select_state, select_year);
-} 
+};
+
+function buildLineGraph(state_county) {
+
+    const ozoneUrl = `/ozone_data/all`
+    d3.json(ozoneUrl).then(function (data) {
+
+        // selecting data by county
+        function selcounty(data) {
+            return data.state_county === state_county;
+        }
+        const counties = data.filter(selcounty);
+        const ozoneline = {
+            x: counties.map(a => a.year),
+            y: counties.map(a => a.arithmetic_mean),
+            name: 'Average ozone pollution',
+            type: 'scatter',
+        }
+
+        var ozoneLayout = {
+            yaxis: {
+                title: {
+                    text: 'Ozone parts per million'
+                }
+            }
+        }
+
+        const ozonelinedata = [ozoneline];
+
+        const SCATTER = document.getElementById("scatter");
+        Plotly.purge(SCATTER);
+        Plotly.plot(SCATTER, ozonelinedata, ozoneLayout);
+
+    })
+
+    function lineOptionChanged(new_county) {
+        // Fetch new data each time a new sample is selected
+        buildLineGraph(new_county);
+    }
+
+};
+
+
+init();

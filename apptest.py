@@ -36,11 +36,11 @@ def index():
 
 @app.route("/ozone_data/<fips>")
 def get_by_fips_ozone(fips, ozone_data = ozone_data):
-    """Return a list of sample names."""
-    """Return the MetaData for a given sample."""
     sel = [
         ozone_data.fips,
-        ozone_data.arithmetic_mean
+        ozone_data.arithmetic_mean,
+        ozone_data.state_county,
+        ozone_data.year,
     ]
 
     results = db.session.query(*sel).filter(ozone_data.fips == fips).all()
@@ -50,17 +50,19 @@ def get_by_fips_ozone(fips, ozone_data = ozone_data):
     for result in results:
         ozone_data["fips"] = result[0]
         ozone_data["arithmetic_mean"] = result[1]
+        ozone_data['state_county'] = result[2]
+        ozone_data['year'] = result[3]
 
     return jsonify(ozone_data)
     
 
 @app.route("/ozone_data/all")
 def all_ozone(ozone_data = ozone_data):
-    """Return a list of sample names."""
-    """Return the MetaData for a given sample."""
     sel = [
         ozone_data.fips,
-        ozone_data.arithmetic_mean
+        ozone_data.arithmetic_mean,
+        ozone_data.state_county,
+        ozone_data.year,
     ]
 
     results = db.session.query(*sel).all()
@@ -69,7 +71,9 @@ def all_ozone(ozone_data = ozone_data):
     for result in results:
         newEntry = {
             "fips": result[0],
-            "arithmetic_mean": result[1]
+            "arithmetic_mean": result[1],
+            "state_county": result[2],
+            "year": result[3]
         }
         ozone_data.append(newEntry)
 

@@ -335,6 +335,7 @@
 		<p>
 			Select a year from the dropdown list:
 			<select id="select_year">
+				<option value="2014">2013</option>
 				<option value="2014">2014</option>
 				<option value="2015">2015</option>
 				<option value="2016">2016</option>
@@ -351,15 +352,24 @@
 		<button onclick="getOption()">
 			Refresh graphic
 		</button>
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-11">
+				<select id="selLine" onchange="lineOptionChanged(this.value)">
+					<option>---</option>
+				</select>
+				<div id="scatter"></div>
+			</div>
+		</div>
 	</div>
-</div>
+	</div>
 
-<script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+	<script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script src="{{ url_for('static', filename='js/app.js') }}"></script>
 
-<div id="myDiv"></div>
+	<div id="myDiv"></div>
 </body>
 
 </html>
