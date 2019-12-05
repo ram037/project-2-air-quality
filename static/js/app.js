@@ -129,7 +129,7 @@ function buildBarChart(selectTheYear) {
             });
 
 
-        mapboxgl.accessToken = 'pk.eyJ1IjoidHllbGxhaW5laG8iLCJhIjoiY2szbTQ1b2xlMWJiNzNldDd5b2FtcGx2ciJ9.8v4tIXDp9vgHU3JVJQuGpg';
+        mapboxgl.accessToken = '';
         var map = new mapboxgl.Map({
             container: 'mapid', // container id
             style: 'mapbox://styles/tyellaineho/ck3m5htnr4eo71cqxdut8a6he', //hosted style id
@@ -309,12 +309,12 @@ function createPlot(select_state, select_year) {
         var layout = {
             margin: { l: 0, r: 0, b: 0, t: 0 },
             sunburstcolorway: [
-                "#636efa", "#EF553B", "#00cc96", "#ab63fa", "#19d3f3",
-                "#e763fa", "#FECB52", "#FFA15A", "#FF6692", "#B6E880"
+                "#C1682C", "#EBA75F", "#4BA5A4", "#1D71BA", "#0E3C51",
+                "#FF5E5B", "#F0DCD0", "#2F6690", "#D60A55", "#07B7BE"
             ],
             extendsunburstcolorway: true
         };
-        Plotly.newPlot('myDiv', data, layout, { showSendToCloud: true });
+        Plotly.newPlot('sunburst', data, layout, { showSendToCloud: true });
     })
 };
 
@@ -339,22 +339,25 @@ function buildLineGraph(state_county) {
         const ozoneline = {
             x: counties.map(a => a.year),
             y: counties.map(a => a.arithmetic_mean),
-            name: 'Average ozone pollution',
-            type: 'scatter',
+            name: `Average Ozone Pollution`,
+            type: 'linegraph',
         }
 
         var ozoneLayout = {
             yaxis: {
                 title: {
                     text: 'Ozone parts per million'
-                }
+                },
+            },
+            line:{
+                color: "rgb(255, 152, 99)"
             }
         }
 
         const ozonelinedata = [ozoneline];
 
-        const SCATTER = document.getElementById("scatter");
-        Plotly.newPlot(SCATTER, ozonelinedata, ozoneLayout);
+        const LINE = document.getElementById("linegraph");
+        Plotly.newPlot(LINE, ozonelinedata, ozoneLayout);
 
     });
 
