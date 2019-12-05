@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>The Greenhouse</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src='https://api.mapbox.com/mapbox.js/v3.2.1/mapbox.js'></script>
+	<link href='https://api.mapbox.com/mapbox.js/v3.2.1/mapbox.css' rel='stylesheet' />
+	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.0.4/chroma.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Fredoka+One|Open+Sans:300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<nav class="navbar sticky-top navbar-light bg-light" style="background-color: #CBF3F0;">
+		<a class="navbar-brand" href="#">
+			<img src="https://image.flaticon.com/icons/svg/190/190906.svg" width="30" height="30"
+				class="d-inline-block align-top" alt="">
+			The Greenhouse
+		</a>
+	</nav>
+	<div class="container-fluid">
+		<div class="body-background">
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-4">
+					<div class="first-row-headline">
+						<br>
+						How's the Air over there?
+					</div>
+					<div class="first-row-para">
+						<br>
+						<h3>Explore air quality and ozone data across the United States from 2013-2018</h3>
+						<br>
+						<h5>Created by The B.E.O.MB Squad</h5>
+						<h5>Columbia Engineering Data Analytics</h5>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<br>
+					<br>
+					<br>
+					<br>
+					<img src="https://image.flaticon.com/icons/svg/190/190906.svg" class="img-fluid">
+					<br><br>
+					<div class="text-center">
+						<div class="small-text">Icon made by Freepik from www.flaticon.com</div>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="row">
+				<div class="col-md-12">
+					</div>
+				</div>
+			</div> -->
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<br><br><br><br>
+					<div class="second-row-title">
+						<h3>What is the Air Quality Index?</h3>
+					</div>
+					<div class="row-content">
+						<p> The AQI is an index for reporting daily air quality. It tells you how clean or polluted your
+							air is, and what associated health effects might be a concern for you. The AQI focuses on
+							health effects you may experience within a few hours or days after breathing polluted air.
+							EPA calculates the AQI for five major air pollutants regulated by the Clean Air Act:
+							ground-level ozone, particle pollution (also known as particulate matter), carbon monoxide,
+							sulfur dioxide, and nitrogen dioxide. For each of these pollutants, EPA has established
+							national air quality standards to protect public health .Ground-level ozone and airborne
+							particles are the two pollutants that pose the greatest threat to human health in this
+							country.</p>
+						(Source: AirNow.gov)
+						<br><br>
+						<div class="second-row-title">
+							<h4>Air Quality Index Range</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-1">
+					<div class=text-center><img src="{{ url_for('static', filename='css/good_flag.svg') }}"
+							width="100px" height="100px"></div>
+				</div>
+				<div class="col-md-1">
+					<div class=text-center><img src="{{ url_for('static', filename='css/mod_flag.svg') }}" width="100px"
+							height="100px"></div>
+				</div>
+				<div class="col-md-1">
+					<div class=text-center><img src="{{ url_for('static', filename='css/unheal_flag.svg') }}"
+							width="100px" height="100px"></div>
+				</div>
+				<div class="col-md-1">
+					<div class=text-center><img src="{{ url_for('static', filename='css/v_unheal_flag.svg') }}"
+							width="100px" height="100px"></div>
+				</div>
+				<div class="col-md-1">
+					<div class=text-center><img src="{{ url_for('static', filename='css/dang_flag.svg') }}"
+							width="100px" height="100px"></div>
+				</div>
+				<div class="col-md-1">
+					<div class=text-center><img src="{{ url_for('static', filename='css/haz_flag.svg') }}" width="100px"
+							height="100px"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-1">
+					<div class=text-center>
+						<h5>Good</h5>
+					</div>
+				</div>
+				<div class="col-md-1">
+					<div class=text-center>
+						<h5>Moderate</h5>
+					</div>
+				</div>
+				<div class="col-md-1">
+					<div class=text-center>
+						<h5>Unhealthy for Sensitive Groups</h5>
+					</div>
+				</div>
+				<div class="col-md-1">
+					<div class=text-center>
+						<h5>Unhealthy</h5>
+					</div>
+				</div>
+				<div class="col-md-1">
+					<div class=text-center>
+						<h5>Very Unhealthy</h5>
+					</div>
+				</div>
+				<div class="col-md-1">
+					<div class=text-center>
+						<h5>Hazardous</h5>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-1">
+					<div class=text-center>
+						<br>
+						<p>Healthy air quality, it is a great Day to be Outdoors!</p>
+					</div>
+				</div>
+				<div class="col-md-1">
+					<div class=text-center>
+						<br>
+						<p>Acceptable air quality, but some pollutants may be of concern to hypersentitve individuals.
+						</p>
+					</div>
+				</div>
+				<div class="col-md-1">
+					<div class=text-center>
+						<br>
+						<p>Healthy people may experience some health irritations while others may be affected to a
+							larger extent.</p>
+					</div>
+				</div>
+				<div class="col-md-1">
+					<div class=text-center>
+						<br>
+						<p>Sensitive individuals may expereince more serious symptoms. The air is moderately polluted.
+						</p>
+					</div>
+				</div>
+				<div class="col-md-1">
+					<div class=text-center>
+						<br>
+						<p>Healthy people may show symptoms while people with heart and respiratory diseases will be
+							significantly affected.</p>
+					</div>
+				</div>
+				<div class="col-md-1">
+					<div class=text-center>
+						<br>
+						<p>It is not advised for anyone to go outside. Healthy individuals should avoid physical
+							activities.</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="text-center">
+						<div class="third-row-title">
+							<h4>Select a Year below to Explore Air Quality Across U.S. Counties</h4>
+							<br>
+						</div><select id="selDataset" onchange="optionChanged(this.value)"></select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="text-center">
+						<br>
+						<p><b>Hover over a colored U.S. County to view location information as well as number of good
+								air
+								quality days</b></p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<br><br><br><br>
+					<div class="second-row-title">
+						<h3>What is the Air Quality Index?</h3>
+					</div>
+					<div class="row-content">
+						<p> The AQI is an index for reporting daily air quality. It tells you how clean or polluted your
+							air is, and what associated health effects might be a concern for you. The AQI focuses on
+							health effects you may experience within a few hours or days after breathing polluted air.
+							EPA calculates the AQI for five major air pollutants regulated by the Clean Air Act:
+							ground-level ozone, particle pollution (also known as particulate matter), carbon monoxide,
+							sulfur dioxide, and nitrogen dioxide. For each of these pollutants, EPA has established
+							national air quality standards to protect public health .Ground-level ozone and airborne
+							particles are the two pollutants that pose the greatest threat to human health in this
+							country.</p>
+						(Source: AirNow.gov)
+						<br><br>
+						<div class="second-row-title">
+							<h4>Air Quality Index Range</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-7">
+					<br>
+					<div id="mapid" style="width: 1200px; height: 1000px;"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-7">
+					<br>
+					<div id="bar"></div>
+				</div>
+				<div class="col-md-3">
+					<br>
+					<div class="table-content">
+						<h4><b>Top Counties with Best Air Quality in Year Selected</b></h4>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>County</th>
+									<th>State</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<h1>Ozone Measures by County</h1>
+				<p>The graphic below shows the Ozone measurements across the counties within the state</p>
+			</div>
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-11">
+					<div id="sunburst"></div>
+				</div>
+			</div>
+		</div>
+
+		<p>
+			Select a state from the dropdown list:
+			<select id="select_state">
+				<option value="Alabama">Alabama</option>
+				<option value="Alaska">Alaska</option>
+				<option value="Arizona">Arizona</option>
+				<option value="Arkansas">Arkansas</option>
+				<option value="California">California</option>
+				<option value="Colorado">Colorado</option>
+				<option value="Connecticut">Connecticut</option>
+				<option value="Delaware">Delaware</option>
+				<option value="Florida">Florida</option>
+				<option value="Georgia">Georgia</option>
+				<option value="Hawaii">Hawaii</option>
+				<option value="Idaho">Idaho</option>
+				<option value="Illinois">Illinois</option>
+				<option value="Indiana">Indiana</option>
+				<option value="Iowa">Iowa</option>
+				<option value="Kansas">Kansas</option>
+				<option value="Kentucky">Kentucky</option>
+				<option value="Louisiana">Louisiana</option>
+				<option value="Maine">Maine</option>
+				<option value="Maryland">Maryland</option>
+				<option value="Massachusetts">Massachusetts</option>
+				<option value="Michigan">Michigan</option>
+				<option value="Minnesota">Minnesota</option>
+				<option value="Mississippi">Mississippi</option>
+				<option value="Missouri">Missouri</option>
+				<option value="Montana">Montana</option>
+				<option value="Nebraska">Nebraska</option>
+				<option value="Nevada">Nevada</option>
+				<option value="New Hampshire">New Hampshire</option>
+				<option value="New Jersey">New Jersey</option>
+				<option value="New Mexico">New Mexico</option>
+				<option value="New York">New York</option>
+				<option value="North Carolina">North Carolina</option>
+				<option value="North Dakota">North Dakota</option>
+				<option value="Ohio">Ohio</option>
+				<option value="Oklahoma">Oklahoma</option>
+				<option value="Oregon">Oregon</option>
+				<option value="Pennsylvania">Pennsylvania</option>
+				<option value="Rhode Island">Rhode Island</option>
+				<option value="South Carolina">South Carolina</option>
+				<option value="South Dakota">South Dakota</option>
+				<option value="Tennessee">Tennessee</option>
+				<option value="Texas">Texas</option>
+				<option value="Utah">Utah</option>
+				<option value="Vermont">Vermont</option>
+				<option value="Virginia">Virginia</option>
+				<option value="Washington">Washington</option>
+				<option value="West Virginia">West Virginia</option>
+				<option value="Wisconsin">Wisconsin</option>
+				<option value="Wyoming">Wyoming</option>
+			</select>
+		</p>
+
+		<p>
+			Select a year from the dropdown list:
+			<select id="select_year">
+				<option value="2014">2013</option>
+				<option value="2014">2014</option>
+				<option value="2015">2015</option>
+				<option value="2016">2016</option>
+				<option value="2017">2017</option>
+				<option value="2018">2018</option>
+			</select>
+		</p>
+
+		<p>
+			You have selected the following state and year:
+			<span class="output"></span>
+		</p>
+
+		<button onclick="getOption()">
+			Refresh graphic
+		</button>
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-11">
+				<select id="selLine" onchange="lineOptionChanged(this.value)">
+					<option>---</option>
+				</select>
+				<div id="scatter"></div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+	<div id="myDiv"></div>
+</body>
+
+</html>
