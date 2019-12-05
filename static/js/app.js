@@ -354,17 +354,16 @@ function buildLineGraph(state_county) {
         const ozonelinedata = [ozoneline];
 
         const SCATTER = document.getElementById("scatter");
-        Plotly.purge(SCATTER);
-        Plotly.plot(SCATTER, ozonelinedata, ozoneLayout);
+        Plotly.newPlot(SCATTER, ozonelinedata, ozoneLayout);
 
-    })
-
-    function lineOptionChanged(new_county) {
-        // Fetch new data each time a new sample is selected
-        buildLineGraph(new_county);
-    }
+    });
 
 };
+function lineOptionChanged(new_county) {
+    // Fetch new data each time a new sample is selected
+    buildLineGraph(new_county);
+};
+
 
 
 init();
