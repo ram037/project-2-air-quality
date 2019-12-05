@@ -192,6 +192,35 @@ def all_aqi(aqi_data = aqi_data):
 
     return jsonify(aqi_data)
 
+@app.route("/omar")
+def omar():
+    """Return the homepage."""
+    return render_template("omar.html")
+    
+@app.route("/ozone_state/<state>/<year>")
+def get_by_state_ozone(state, year, ozone_data = ozone_data):
+    """Return a list of ozone data by state, county, and year."""
+    """Return the MetaData for a given sample."""
+    
+    sel = [
+        ozone_data.state,
+        ozone_data.county,
+        ozone_data.year,
+        ozone_data.arithmetic_mean
+    ]
+
+    results = db.session.query(*sel).filter(ozone_data.state == state.title()).filter(ozone_data.year == year).group_by(ozone_data.fips).all()
+
+    # Create a dictionary entry for each row of metadata information
+    ozone_data = []
+    for result in results:
+        ozone_data.append({
+            "state": result[0],
+            "county": result[1],
+            "year": result[2],
+            "arithmetic_mean": result[3]
+        })
+    return jsonify(ozone_data)
 
 
 
