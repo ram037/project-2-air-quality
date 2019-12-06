@@ -129,7 +129,7 @@ function buildBarChart(selectTheYear) {
             });
 
 
-        mapboxgl.accessToken = '';
+        mapboxgl.accessToken = 'pk.eyJ1IjoidHllbGxhaW5laG8iLCJhIjoiY2szbTQ1b2xlMWJiNzNldDd5b2FtcGx2ciJ9.8v4tIXDp9vgHU3JVJQuGpg';
         var map = new mapboxgl.Map({
             container: 'mapid', // container id
             style: 'mapbox://styles/tyellaineho/ck3m5htnr4eo71cqxdut8a6he', //hosted style id
