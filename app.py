@@ -63,6 +63,7 @@ def all_ozone(ozone_data = ozone_data):
         ozone_data.arithmetic_mean,
         ozone_data.state_county,
         ozone_data.year,
+        ozone_data.state
     ]
 
     results = db.session.query(*sel).all()
@@ -73,7 +74,8 @@ def all_ozone(ozone_data = ozone_data):
             "fips": result[0],
             "arithmetic_mean": result[1],
             "state_county": result[2],
-            "year": result[3]
+            "year": result[3],
+            "state": result[4]
         }
         ozone_data.append(newEntry)
 
